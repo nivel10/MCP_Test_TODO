@@ -1,5 +1,5 @@
 {
-  "name": "mcp_weather",
+  "name": "mcp_test_todo",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -18,9 +18,11 @@
   "description": "",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.0",
+    "better-sqlite3": "^11.9.1",
     "zod": "^3.24.3"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.14.1",
     "typescript": "^5.8.3"
   }
