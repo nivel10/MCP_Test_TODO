@@ -10,6 +10,7 @@ export interface Todo {
 
 const dbName = 'todos.db';
 const dbLocatiob = join(homedir(), 'todos');
+//const dbLocatiob = join(__dirname, 'todos');
 const dbDirectory = resolve(dbLocatiob);
 
 if (!existsSync(dbDirectory)) {
@@ -41,9 +42,22 @@ export const dbOperations = {
         return statement.all() as Todo[];
     },
     removeTodo: (id: number): boolean => {
-        const statement = db.prepare('DELETE FROM todos WHERE id = ?');
-        const info = statement.run(id);
-        
+        let statement;
+        let info;
+        if(id === undefined || id === null){
+            statement = db.prepare('DELETE FROM todos');
+            info = statement.run(id);
+        } else {
+            statement = db.prepare('DELETE FROM todos WHERE id = ?');
+            info = statement.run(id);
+        }
+
         return info.changes > 0;
      },
+     removeTodoAll: () => {
+        const statement = db.prepare('DELETE FROM todos');
+        const info = statement.run();
+
+        return info.changes > 0;
+     }
 }

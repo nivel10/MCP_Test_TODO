@@ -2,6 +2,8 @@ import { McpServer, } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport, } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z, } from 'zod';
 import { dbOperations } from './dataBase.js';
+//console.log(path.dirname('../build/index.js'));
+//console.log(path.basename('../build/index.js'));
 const server = new McpServer({
     name: 'TODO',
     version: '1.0.0',
@@ -91,6 +93,27 @@ server.tool('remove-todo', {
             {
                 type: 'text',
                 text: `Todo ${id} was removed`,
+            }
+        ]
+    };
+});
+server.tool('todo-remove-all', {}, async () => {
+    const todos = dbOperations.removeTodoAll();
+    if (!todos) {
+        return {
+            content: [
+                {
+                    type: 'text',
+                    text: 'There are no items to delete',
+                }
+            ]
+        };
+    }
+    return {
+        content: [
+            {
+                type: 'text',
+                text: `You have removed all items todo`,
             }
         ]
     };

@@ -1,0 +1,5 @@
+{
+    "name": "todo",
+    "command": "/Users/cherrera/.nvm/versions/node/v20.18.0/bin/node",
+    "args": ["/Users/cherrera/Documents/GitHub/Carlos H./MCP_Test_TODO/build/index.js"]
+}
